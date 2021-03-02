@@ -2,10 +2,12 @@
 package dat3.delfinen.entities;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -21,6 +23,9 @@ public class Person implements Serializable {
     
     private String name;
     private int yearOfBirth;
+    
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private Address address;
 
     public Person() {
     }
@@ -28,17 +33,13 @@ public class Person implements Serializable {
     public Person(String name, int yearOfBirth) {
         this.name = name;
         this.yearOfBirth = yearOfBirth;
+        
     }
-
-    
 
     public Long getP_id() {
         return p_id;
     }
 
-    public void setP_id(Long p_id) {
-        this.p_id = p_id;
-    }
 
     public String getName() {
         return name;
@@ -55,6 +56,19 @@ public class Person implements Serializable {
     public void setYearOfBirth(int yearOfBirth) {
         this.yearOfBirth = yearOfBirth;
     }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+        if (address != null) {
+            address.setPerson(this);
+        }
+    }
+    
+    
     
     
 
