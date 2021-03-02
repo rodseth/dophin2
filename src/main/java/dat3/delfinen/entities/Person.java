@@ -2,11 +2,14 @@
 package dat3.delfinen.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -26,6 +29,9 @@ public class Person implements Serializable {
     
     @OneToOne(cascade = CascadeType.PERSIST)
     private Address address;
+    
+    @OneToMany(mappedBy = "person", cascade = CascadeType.PERSIST)
+    List<Fee> fees;
 
     public Person() {
     }
@@ -33,6 +39,7 @@ public class Person implements Serializable {
     public Person(String name, int yearOfBirth) {
         this.name = name;
         this.yearOfBirth = yearOfBirth;
+        this.fees =  new ArrayList<>();
         
     }
 
@@ -67,11 +74,16 @@ public class Person implements Serializable {
             address.setPerson(this);
         }
     }
-    
-    
-    
-    
 
-   
+    public List<Fee> getFees() {
+        return fees;
+    }
+
+    public void addFee(Fee fee) {
+        this.fees.add(fee);
+        if (fee != null) {
+            fee.setPerson(this);
+        }
+    }
     
 }
