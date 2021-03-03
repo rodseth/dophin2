@@ -5,6 +5,7 @@
     <class>dat3.delfinen.entities.Person</class>
     <class>dat3.delfinen.entities.Address</class>
     <class>dat3.delfinen.entities.Fee</class>
+    <class>dat3.delfinen.entities.SwimStyle</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/dolphin?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="dev"/>
